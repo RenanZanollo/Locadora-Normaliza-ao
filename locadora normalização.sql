@@ -48,6 +48,27 @@ INSERT INTO locacao (codigoLocacao, dias, total, fk_cliente, fk_veiculos) VALUES
 (104, 3, 240.00, 4, 4),
 (105, 7, 315.00, 5, 5);
 
+CREATE VIEW LocaçõesDetalhadas AS
+SELECT 
+    locacao.codigoLocacao,
+    locacao.dias,
+    locacao.total,
+    cliente.idCliente,
+    cliente.nomeCliente,
+    cliente.cpf,
+    cliente.nascimento,
+    veiculos.idVeiculo,
+    veiculos.veiculo,
+    veiculos.cor,
+    veiculos.placa,
+    veiculos.diaria
+FROM 
+    locacao
+JOIN 
+    cliente ON locacao.fk_cliente = cliente.idCliente
+JOIN 
+    veiculos ON locacao.fk_veiculos = veiculos.idVeiculo;
+
 SELECT * FROM locacao;
 
 SELECT * FROM cliente;
